@@ -1,0 +1,22 @@
+{% extends 'layout/index.html' %}
+
+{% block content %}
+    <div class="row">
+        {% if pokemons %}
+            {% for pokemon in pokemons %}
+                <div class="col-md-3 mt-2">
+
+                    <div class="card text-center">
+                        <div class="card-header"><h5><strong>{{ pokemon.name }}</strong></h5></div>
+                        <div class="card-body">
+                            <img class="pokemon_img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" alt="">
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary d-block" href=" {% url 'pokemon:pokemon_details' pokemon.id %} ">Ver pokemon</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>   
+{% endblock content %}

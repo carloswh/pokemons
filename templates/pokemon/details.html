@@ -1,0 +1,31 @@
+{% extends 'layout/index.html' %}
+
+{% block content %}
+    <div class="row justify-content-md-center mt-2">
+        <div class="col-md-7">
+            {% if pokemon %}
+                <div class="card text-center">
+                    <div class="card-header"><h5><strong>{{ pokemon.name }}</strong></h5></div>
+                    <div class="card-body">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" alt="">
+                    </div>
+                    <div class="card-footer">
+                        <p><strong>Peso: {{ pokemon.height }}</strong></p>
+                        <p><strong>Altura: {{ pokemon.weight }}</strong></p>
+                        <p>
+                            <strong>Tipo:
+                                {% if pokemon.types %}
+                                    {% for ptype in pokemon.types %}
+                                        <a href="{% url 'pokemon:pokemons_by_type' ptype.id %}">{{ ptype.type.name }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            </strong>
+                        </p>
+                        <p><strong>Habilidades: {{ pokemon.habilities }}</strong></p>
+                        <p><strong>Movimientos: {{ pokemon.moves }} </strong></p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
